@@ -1,9 +1,14 @@
 
 import ply.lex as lex
 
-tokens = ['INT']
+tokens = ['INT', 'FLOAT']
 
 t_ignore = ' \t'
+
+def t_FLOAT(t):
+    r'\d+\.\d*(?:[eE][-+]?\d+)?|\.\d+(?:[eE][-+]?\d+)?'      
+    t.value = float(t.value.replace('_', ''))
+    return t
 
 def t_INT(t):
     r'\d+(_\d+)*'
